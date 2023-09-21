@@ -1,0 +1,17 @@
+# Upload some file
+POST http://localhost:3000/api/files/upload/650c23abffd4f9583d388e6b  HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTBjMjM2MGE4YTliNTU0MDg4MDVhZTMiLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwibmFtZSI6InVzZXIiLCJpYXQiOjE2OTUzMjQzMDYsImV4cCI6MTY5NTQxMDcwNn0.RGW2GQ_n0ha8VBLrP1HNOlzci84wZxIxZgdyGAzNHOg
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="cat.jpg"
+
+< backend/apps/shop/src/app/file/static/cat.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# Get file by ID
+GET http://localhost:3000/api/files/650b66695a847f3b1f7a3178 HTTP/1.1
+
+###

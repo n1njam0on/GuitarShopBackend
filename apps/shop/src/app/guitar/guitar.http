@@ -1,0 +1,39 @@
+# Create a new guitar
+POST http://localhost:3000/api/guitars/create HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTBjMjM2MGE4YTliNTU0MDg4MDVhZTMiLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwibmFtZSI6InVzZXIiLCJpYXQiOjE2OTUzMjQzMDYsImV4cCI6MTY5NTQxMDcwNn0.RGW2GQ_n0ha8VBLrP1HNOlzci84wZxIxZgdyGAzNHOg
+Content-Type: application/json
+
+{
+  "title": "fender1233",
+  "description": "the bestewefcwevwvwevwevwevwevwev",
+  "guitarType": "Ukulele",
+  "vendorCode": "12FGT5678",
+  "stringsNumber": "Six",
+  "price": "122"
+}
+
+###
+
+# Get guitar by ID
+GET http://localhost:3000/api/guitars/650c23abffd4f9583d388e6 HTTP/1.1
+
+###
+# Update guitar by ID
+PATCH http://localhost:3000/api/guitars/update/17 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTBjMjM2MGE4YTliNTU0MDg4MDVhZTMiLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwibmFtZSI6InVzZXIiLCJpYXQiOjE2OTUzMjQzMDYsImV4cCI6MTY5NTQxMDcwNn0.RGW2GQ_n0ha8VBLrP1HNOlzci84wZxIxZgdyGAzNHOg
+Content-Type: application/json
+
+{
+  "title": "fender1233"
+}
+###
+# Delete guitar by ID
+DELETE http://localhost:3000/api/guitars/17 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTBjMjM2MGE4YTliNTU0MDg4MDVhZTMiLCJlbWFpbCI6InVzZXIxQG5vdGZvdW5kLmxvY2FsIiwibmFtZSI6InVzZXIiLCJpYXQiOjE2OTUzMjQzMDYsImV4cCI6MTY5NTQxMDcwNn0.RGW2GQ_n0ha8VBLrP1HNOlzci84wZxIxZgdyGAzNHOg
+
+###
+
+# Get all guitars and filtres
+GET http://localhost:3000/api/guitars?sortDirection=desc&limit=5&page=1&stringsNumber=Six&guitarType=Ukulele&price=on  HTTP/1.1
+
+###
