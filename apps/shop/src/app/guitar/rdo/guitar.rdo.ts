@@ -60,4 +60,11 @@ export class GuitarRdo {
   })
   @Expose()
   public photo: string;
+
+  @ApiProperty({
+    description: 'Creation date',
+    example: '2012-03-15'
+  })
+  @Expose()
+  public creationDate: Date;
 }

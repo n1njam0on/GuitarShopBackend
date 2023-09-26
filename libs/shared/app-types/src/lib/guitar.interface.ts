@@ -10,4 +10,5 @@ export interface Guitar {
   vendorCode: string;
   stringsNumber: StringsNumber;
   price: number;
+  creationDate?: Date;
 }

@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { GuitarType } from "@backend/libs/shared/app-types";
 import { StringsNumber } from "@backend/libs/shared/app-types";
-import { IsEnum, IsString, Length, Max, Min } from "class-validator";
+import { IsDate, IsEnum, IsOptional, IsString, Length, Max, Min } from "class-validator";
 import { Transform } from "class-transformer";
+import { CREATION_DATE_NOT_VALID } from "../guitar.constants";
 
 export class UpdateGuitarDto {
 
@@ -12,6 +13,7 @@ export class UpdateGuitarDto {
   })
   @Length(10, 100)
   @IsString()
+  @IsOptional()
   public title?: string;
 
   @ApiProperty({
@@ -20,6 +22,7 @@ export class UpdateGuitarDto {
   })
   @Length(20, 1024)
   @IsString()
+  @IsOptional()
   public description?: string;
 
   @ApiProperty({
@@ -27,6 +30,7 @@ export class UpdateGuitarDto {
     example: 'Ukulele'
   })
   @IsEnum(GuitarType)
+  @IsOptional()
   public guitarType?: GuitarType;
 
   @ApiProperty({
@@ -35,12 +39,14 @@ export class UpdateGuitarDto {
   })
   @Length(4, 40)
   @IsString()
+  @IsOptional()
   public vendorCode?: string;
 
   @ApiProperty({
     description: 'The guitar strings number - 4/6/7/12',
     example: '7'
   })
+  @IsOptional()
   public stringsNumber?: StringsNumber;
 
   @ApiProperty({
@@ -49,6 +55,7 @@ export class UpdateGuitarDto {
   })
   @Min(100, { message: 'Minimum price is 100' })
   @Max(1000000, { message: 'Maximum price is 1000000' })
+  @IsOptional()
   @Transform(({ value }) => Number(value))
   public price?: number;
 
@@ -57,5 +64,15 @@ export class UpdateGuitarDto {
     example: '/images/guitar.png'
   })
   @IsString()
+  @IsOptional()
   public photo?: string;
+
+  @ApiProperty({
+    description: 'The guitar creation date',
+    example: '1981-03-12',
+  })
+  @IsDate({ message: CREATION_DATE_NOT_VALID })
+  @Transform(({value}) => new Date(value))
+  @IsOptional()
+  public creationDate?: Date;
 }

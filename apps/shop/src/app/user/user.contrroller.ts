@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpStatus, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post, Req, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UserRdo } from './rdo/user.rdo';
@@ -6,7 +6,6 @@ import { UserService } from './user.service';
 import { fillObject } from '@backend/libs/util/util-core'
 import { LoggedUserRdo } from './rdo/logged-user.rdo';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { MongoidValidationPipe } from '@backend/libs/shared/shared-pipes';
 import { JwtAuthGuard } from '@backend/libs/shared/shared-guards'
 import { RequestWithTokenPayload } from '@backend/libs/shared/app-types';
 

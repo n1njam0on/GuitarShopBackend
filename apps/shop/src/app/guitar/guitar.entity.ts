@@ -9,6 +9,7 @@ export class GuitarEntity implements Guitar {
   public price: number;
   public vendorCode: string;
   public photo?: string;
+  public creationDate?: Date;
 
   constructor(guitar: Guitar) {
     this.fillEntity(guitar);
@@ -24,6 +25,7 @@ export class GuitarEntity implements Guitar {
       price: this.price,
       vendorCode: this.vendorCode,
       photo: this.photo,
+      creationDate: this.creationDate,
     };
   }
 
@@ -36,5 +38,6 @@ export class GuitarEntity implements Guitar {
     this.price = guitar.price;
     this.vendorCode = guitar.vendorCode;
     this.photo = guitar.photo;
+    this.creationDate = guitar.creationDate;
   }
 }

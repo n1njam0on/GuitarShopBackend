@@ -1,4 +1,4 @@
-import { IsEnum, IsIn, IsNumber, IsOptional } from 'class-validator';
+import { IsArray,IsEnum,IsIn, IsNumber, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
 import { DEFAULT_GUITAR_COUNT_LIMIT } from '../guitar.constants';
 import { GuitarType } from '@backend/libs/shared/app-types';
@@ -11,9 +11,11 @@ export class GuitarQuery {
   @IsOptional()
   public limit = DEFAULT_GUITAR_COUNT_LIMIT;
 
+  @Transform(({ value }) => value.split(',').map((item) => item))
+  @IsArray({})
   @IsOptional()
-  @IsEnum(GuitarType)
-  public guitarType?: GuitarType;
+  @IsEnum(GuitarType, {each: true})
+  public guitarType?: GuitarType[];
 
 
   @IsIn(['asc', 'desc'])
@@ -25,13 +27,15 @@ export class GuitarQuery {
   @IsOptional()
   public page: number;
 
-
+  @Transform(({ value }) => value.split(',').map((item) => item))
   @IsOptional()
-  @IsEnum(StringsNumber)
-  public stringsNumber: StringsNumber;
+  @IsArray({})
+  @IsEnum(StringsNumber, {each: true})
+  public stringsNumber?: StringsNumber[];
 
   @IsIn(['on', 'off'])
   @IsOptional()
   public price: 'on' | 'off' = 'off'
 
 }
+

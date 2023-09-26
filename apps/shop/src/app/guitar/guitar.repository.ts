@@ -43,21 +43,21 @@ export class GuitarRepository implements CRUDRepository<GuitarEntity, string, Gu
     if(!guitarType){
       type = [GuitarType.Acoustic, GuitarType.Electro, GuitarType.Ukulele]
     }else{
-      type.push(guitarType);
+      type = guitarType;
     }
 
     let strings = []
     if(!stringsNumber){
       strings = [StringsNumber.Four, StringsNumber.Six, StringsNumber.Seven, StringsNumber.Twelve]
     }else{
-      strings.push(stringsNumber);
+      strings = stringsNumber;
     }
 
     let direction: SortingTypeDefinition;
     sortDirection === 'desc' ? direction = -1 : direction = 1;
 
     let sort;
-    price === 'on' ? sort = {price: direction} : sort = {createdAt: direction};
+    price === 'on' ? sort = {price: direction} : sort = {creationDate: direction};
 
     return this.guitarModel.aggregate([
       {

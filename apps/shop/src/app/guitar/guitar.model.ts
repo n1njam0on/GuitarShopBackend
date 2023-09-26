@@ -47,6 +47,12 @@ export class GuitarModel extends Document implements Guitar {
   })
   public price: number;
 
+  @Prop({
+    required: true,
+    default: new Date(),
+  })
+  public creationDate: Date;
+
 }
 
 export const GuitarSchema = SchemaFactory.createForClass(GuitarModel);

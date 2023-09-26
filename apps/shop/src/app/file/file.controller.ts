@@ -33,6 +33,7 @@ export class FileController {
   @UseGuards(JwtAuthGuard)
   @UseInterceptors(FileInterceptor('file'))
   public async uploadFile(@UploadedFile(FileValidationPipe) file: Express.Multer.File, @Param('guitarId', MongoidValidationPipe) guitarId: string) {
+    console.log(file);
     const existGuitar = await this.guitarService.exist(guitarId);
     if(!existGuitar){
       Logger.log(`🚀 NotFoundException ${GUITAR_NOT_FOUND}`);

@@ -2,7 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 import { GuitarType } from "@backend/libs/shared/app-types";
 import { StringsNumber } from "@backend/libs/shared/app-types";
 import { Transform } from "class-transformer";
-import { IsEnum, IsString, Length, Max, Min} from "class-validator";
+import { IsDate, IsEnum, IsOptional, IsString, Length, Max, Min} from "class-validator";
+import { CREATION_DATE_NOT_VALID } from "../guitar.constants";
 
 export class CreateGuitarDto {
   @ApiProperty({
@@ -51,4 +52,14 @@ export class CreateGuitarDto {
   @Max(1000000, { message: 'Maximum price is 1000000' })
   @Transform(({ value }) => Number(value))
   public price: number;
+
+
+  @ApiProperty({
+    description: 'The guitar creation date',
+    example: '1981-03-12',
+  })
+  @IsDate({ message: CREATION_DATE_NOT_VALID })
+  @Transform(({value}) => new Date(value))
+  @IsOptional()
+  public creationDate?: Date;
 }

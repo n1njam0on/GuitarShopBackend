@@ -23,4 +23,11 @@ export class LoggedUserRdo {
   })
   @Expose()
   public accessToken: string;
+
+  @ApiProperty({
+    description: 'User name',
+    example: 'Sam'
+  })
+  @Expose()
+  public name: string;
 }
